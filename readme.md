@@ -1,3 +1,5 @@
+# TFS -> Wrike Updater
+
 This application enables you to send TFS commit/changeset info to Wrike automatically upon commit, so that when you do this:
 
 ![image](https://user-images.githubusercontent.com/2829865/37444926-9905d87c-2868-11e8-9f07-d9490d8a0d22.png)
@@ -6,9 +8,13 @@ You will see this:
 
 ![image](https://user-images.githubusercontent.com/2829865/37444763-8e2ded82-2867-11e8-9e75-a29070fdc6f9.png)
 
+This is very helpful so you can see within Wrike what code changes have gone into a task.
+
 This is done by implementing a TFS service hook, so this is a WebApi project. Upon receiving the hook call from TFS, it will update Wrike with the details of the commit using the Wrike API. 
 
-To accomplish this, download this project, compile and host it somewhere in IIS under a virtual directory named something like "api-wrike-updater". Assuming your server name is "MyAwesomeHost", you should be able to access the following:
+## How to install
+
+Download this project, compile using Visual Studio and host it somewhere in IIS under a virtual directory named something like "api-wrike-updater". Assuming your server name is "MyAwesomeHost", you should be able to access the following:
 
 http://MyAwesomeHost/api-wrike-updater/v1/hello-world
 
@@ -30,8 +36,14 @@ click "Test" and it should succeed. Now do another for "Code pushed" and point i
 
 Click "Test", and it should succeed.
 
+## How to use
+
 If you now commit some code with a message that looks like this:
 
 	"Updated code because of reason x, Wrike 12345123"
 
 It will update task 12345123 with the changeset ID, commitID and also post a comment with a link to the commit. You will need within Wrike to display the custom fields for that task (you can do this in the table view).
+
+## Security
+
+If you're sane you should run this over HTTPS, and you should also implement basic authentication. This is easily done and works great with TFS service hooks.
