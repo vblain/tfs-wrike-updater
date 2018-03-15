@@ -1,6 +1,14 @@
-This is a WebAPI project that handles a TFS service hook for a push or commit. Upon receiving the message, it will update Wrike with the details of the commit. 
+This application enables you to send TFS commit/changeset info to Wrike automatically upon commit, so that when you do this:
 
-To use this project, download, compile and host it somewhere in IIS under a virtual directory named something like "api-wrike-updater". Assuming your server name is "MyAwesomeHost", you should be able to access the following:
+![image](https://user-images.githubusercontent.com/2829865/37444926-9905d87c-2868-11e8-9f07-d9490d8a0d22.png)
+
+You will see this:
+
+![image](https://user-images.githubusercontent.com/2829865/37444763-8e2ded82-2867-11e8-9e75-a29070fdc6f9.png)
+
+This is done by implementing a TFS service hook, so this is a WebApi project. Upon receiving the hook call from TFS, it will update Wrike with the details of the commit using the Wrike API. 
+
+To accomplish this, download this project, compile and host it somewhere in IIS under a virtual directory named something like "api-wrike-updater". Assuming your server name is "MyAwesomeHost", you should be able to access the following:
 
 http://MyAwesomeHost/api-wrike-updater/v1/hello-world
 
